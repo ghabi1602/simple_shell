@@ -15,7 +15,8 @@ int main(void)
 		disp_msg();
 		buffer = reader();
 		exec_cmd(buffer);
-	}		
+	}
 
+	free(buffer);
 	return (0);
 }

@@ -8,12 +8,11 @@
 
 int _strlen(const char *msg)
 {
-		int i = 0;
-			
-			for (i = 0; msg[i] != '\0'; i++)
-							;
-				
-				return (i);
+	int i = 0;
+
+	for (i = 0; msg[i] != '\0'; i++)
+		;
+	return (i);
 }
 
 /**

@@ -2,10 +2,10 @@
 
 /**
 * reader - the functions reads the intput from stdin
-* @cmd: the commad from the user input
+* Return: return the string of the user input
 */
 
-char* reader()
+char *reader(void)
 {
 	char *buffer = NULL;
 	size_t count = 0;
@@ -19,6 +19,6 @@ char* reader()
 		exit(EXIT_FAILURE);
 	}
 	buffer[strcspn(buffer, "\n")] = '\0';
-	
+
 	return (buffer);
 }

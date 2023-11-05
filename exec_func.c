@@ -12,7 +12,7 @@ void exec_cmd(const char *cmd)
 	char *tok;
 	char *cmd_arr[128];
 	int i = 0;
-	
+
 	/* handles error if child not created */
 	if (c_pid == -1)
 	{
@@ -30,7 +30,7 @@ void exec_cmd(const char *cmd)
 			tok = strtok(NULL, " ");
 			i++;
 		}
-		
+
 		cmd_arr[i] = NULL;
 		execve(cmd_arr[0], cmd_arr, NULL);
 		perror("execve");

@@ -15,6 +15,6 @@ void disp_msg(void);
 void _print(const char *msg);
 int _strlen(const char *msg);
 void exec_cmd(const char *cmd);
-char* reader(void);
+char *reader(void);
 
 #endif /* SHELL_H */

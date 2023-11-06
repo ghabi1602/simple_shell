@@ -32,5 +32,5 @@ void _print(const char *msg)
 
 void disp_msg(void)
 {
-		_print("$ ");
+		_print("simple_shell$ ");
 }

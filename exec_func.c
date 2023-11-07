@@ -4,6 +4,7 @@
 * exec_cmd - execute the command from the user input
 * @cmd: list of string entered by thte user
 */
+extern char **environ;
 
 void exec_cmd(const char *cmd)
 {
@@ -12,7 +13,6 @@ void exec_cmd(const char *cmd)
 	char *tok;
 	char *cmd_arr[128];
 	int i = 0;
-	char s[] = "/usr/bin/";
 
 	/* handles error if child not created */
 	if (c_pid == -1)
@@ -33,8 +33,7 @@ void exec_cmd(const char *cmd)
 		}
 		cmd_arr[i] = NULL;
 
-		strcat(s, cmd_arr[0]);
-		execve(s, cmd_arr, NULL);
+		execve(cmd_arr[0], cmd_arr, NULL);
 		perror("execve");
 		exit(EXIT_FAILURE);
 	}

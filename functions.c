@@ -77,3 +77,26 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	free(ptr);
 	return (p);
 }
+/**
+ * _strcat - concatinates two strings
+ * @dest: destination string
+ * @src: source string
+ * Return: pointer to destination
+ */
+char *_strcat(char *dest, char *src)
+{
+	int len1, len2;
+
+	len1 = 0;
+	while (dest[len1] != '\0')
+		len1++;
+
+	len2 = 0;
+	while (src[len2] != '\0')
+	{
+		dest[len1] = src[len2];
+		len2++;
+		len1++;
+	}
+	return (dest);
+}

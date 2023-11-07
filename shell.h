@@ -18,5 +18,6 @@ void exec_cmd(const char *cmd);
 char *reader(void);
 char *_memset(char *s, char b, unsigned int n);
 char *_memcpy(char *dest, char *src, unsigned int n);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 #endif /* SHELL_H */

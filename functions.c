@@ -100,3 +100,21 @@ char *_strcat(char *dest, char *src)
 	}
 	return (dest);
 }
+/**
+ * _strcpy - copies a string
+ * @dest: string to copy in
+ * @src: string to be copied
+ * Return: pointer to the new copy
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int len = 0, i;
+
+	while (src[len] != '\0')
+		len++;
+
+	for (i = 0; i < len; i++)
+		dest[i] = src[i];
+
+	return (dest);
+}

@@ -12,6 +12,7 @@ void exec_cmd(const char *cmd)
 	char *tok;
 	char *cmd_arr[128];
 	int i = 0;
+	char s[] = "/usr/bin/";
 
 	/* handles error if child not created */
 	if (c_pid == -1)
@@ -30,9 +31,10 @@ void exec_cmd(const char *cmd)
 			tok = strtok(NULL, " ");
 			i++;
 		}
-
 		cmd_arr[i] = NULL;
-		execve(cmd_arr[0], cmd_arr, NULL);
+
+		strcat(s, cmd_arr[0]);
+		execve(s, cmd_arr, NULL);
 		perror("execve");
 		exit(EXIT_FAILURE);
 	}

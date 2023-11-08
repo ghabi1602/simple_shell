@@ -34,13 +34,21 @@ char *_getenv(const char *env)
 	while (environ[i] != NULL)
 	{
 		pos = _strcspn(environ[i], "=");
-		s = malloc(sizeof(char) * pos + 1);
+		s = malloc(sizeof(char) * (pos + 1));
+		if (s == NULL)
+			return (NULL);
+
 		for (j = 0; j < pos; j++)
 			s[j] = environ[i][j];
-		if (env == s)
+		if (_strcmp(s, env) == 1)
 		{
 			len = _strlen(environ[i]) - pos;
 			str_env = malloc(sizeof(char) * len);
+			if (str_env == NULL)
+			{
+				free(s);
+				return (NULL);
+			}
 
 			c = 0;
 			for (j = pos + 2; environ[i][j] != '\0'; j++, c++)

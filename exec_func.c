@@ -27,8 +27,8 @@ void exec_cmd(const char *cmd)
 		tok = strtok((char *)cmd, " ");
 		while (tok != NULL)
 		{
-			strcpy(buf, tok);
-			cmd_arr[i] = strdup(buf);
+			_strcpy(buf, tok);
+			cmd_arr[i] = _strdup(buf);
 			tok = strtok(NULL, " ");
 			i++;
 		}

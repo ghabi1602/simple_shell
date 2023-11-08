@@ -14,6 +14,8 @@ int main(void)
 	{
 		disp_msg();
 		buffer = reader();
+		if (_strcmp(buffer, "exit") == 1)
+			break;
 		exec_cmd(buffer);
 	}
 

@@ -4,6 +4,7 @@
 * exec_cmd - execute the command from the user input
 * @cmd: list of string entered by thte user
 */
+extern char **environ;
 
 void exec_cmd(const char *cmd)
 {
@@ -35,7 +36,7 @@ void exec_cmd(const char *cmd)
 
 		_strcat(link, cmd_arr[0]);
 
-		execve(link, cmd_arr, NULL);
+		execve(link, cmd_arr, environ);
 		perror("execve");
 		exit(EXIT_FAILURE);
 	}

@@ -1,6 +1,5 @@
 #include "shell.h"
 
-char *cmd_arr[128];
 /**
  * check_for_file - looks for a file in a directory
  * @path: the path to the dir
@@ -74,11 +73,14 @@ char *rm_arg_0(char *arr)
  * @cmd_arr: where the array will be stored outside the func
  */
 
-char *parse_func(const char *str)
+void parse_func(const char *str, char *cmd_arr[128])
 {
-	int i;
+	int i, j;
 	char buf[128];
 	char *tok;
+
+	for(j = 0; j < 128; j++)
+		buf[j] = '\0';
 
 	tok = strtok((char *)str, " ");
 	i = 0;
@@ -90,6 +92,4 @@ char *parse_func(const char *str)
 		i++;
 	}
 	cmd_arr[i] = NULL;
-
-	return (*cmd_arr);
 }

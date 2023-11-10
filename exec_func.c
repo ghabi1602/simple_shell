@@ -10,7 +10,7 @@ int exec_cmd(const char *cmd)
 {
 	pid_t c_pid; /* creates a child process */
 	int j;
-	char *cmd_arr[128];
+	char *cmd_arr[128], **exp;
 	char link[30] = "/usr/bin/";
 
 	for(j = 0; j < 128; j++)

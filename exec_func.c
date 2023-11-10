@@ -6,9 +6,9 @@
 */
 extern char **environ;
 
-void exec_cmd(const char *cmd)
+int exec_cmd(const char *cmd)
 {
-	pid_t c_pid = fork(); /* creates a child process */
+	pid_t c_pid; /* creates a child process */
 	int j;
 	char *cmd_arr[128];
 	char link[30] = "/usr/bin/";
@@ -16,6 +16,14 @@ void exec_cmd(const char *cmd)
 	for(j = 0; j < 128; j++)
 		cmd_arr[j] = NULL;
 
+	parse_func(cmd, cmd_arr);
+	_strcat(link, cmd_arr[0]);
+	if(access(link,F_OK) == -1)
+	{
+		perror(cmd_arr[0]);
+		return (-1);
+	}
+	c_pid = fork();
 
 	/* handles error if child not created */
 	if (c_pid == -1)
@@ -25,8 +33,6 @@ void exec_cmd(const char *cmd)
 	}
 	else if (c_pid == 0)
 	{
-		parse_func(cmd, cmd_arr);
-		_strcat(link, cmd_arr[0]);
 		execve(link, cmd_arr, environ);
 		perror("execve");
 		exit(EXIT_FAILURE);
@@ -35,5 +41,5 @@ void exec_cmd(const char *cmd)
 	{
 		wait(NULL);
 	}
-
+	return (0);
 }

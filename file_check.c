@@ -68,14 +68,14 @@ char **rm_arg(char **arr)
  * @cmd_arr: where the array will be stored outside the func
  */
 
-void parse_func(char *str, char **cmd_arr)
+void parse_func(const char *str, char **cmd_arr)
 {
 	int i, j;
 	char *tok;
 	char buff[128];
 
 
-	tok = strtok(str, " ");
+	tok = strtok((char *)str, " ");
 
 	i = 0;
 	while (tok != NULL)

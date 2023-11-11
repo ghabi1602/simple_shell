@@ -68,23 +68,29 @@ char **rm_arg(char **arr)
  * @cmd_arr: where the array will be stored outside the func
  */
 
-void parse_func(const char *str, char **cmd_arr)
+void parse_func(char *str, char **cmd_arr)
 {
 	int i, j;
-	char buf[128];
 	char *tok;
+	char *s;
 
-	for(j = 0; j < 128; j++)
-		buf[j] = '\0';
 
-	tok = strtok((char *)str, " ");
+	tok = strtok(str, " ");
+	s = malloc(sizeof(char) * _strlen(tok) + 1);
+	if (!s)
+		return;
 	i = 0;
 	while (tok != NULL)
 	{
-		_strcpy(buf, tok);
-		cmd_arr[i] = _strdup(buf);
+		_strcpy(s, tok);
+		cmd_arr[i] = _strdup(s);
+		free(s);
 		tok = strtok(NULL, " ");
 		i++;
+		s = malloc(sizeof(char) * _strlen(tok) + 1);
+		if (!s)
+			return;
 	}
+	free(s);
 	cmd_arr[i] = NULL;
 }

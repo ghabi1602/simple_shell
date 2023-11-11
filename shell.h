@@ -26,7 +26,7 @@ size_t _strcspn(const char *str, const char *reject);
 void _printenv(void);
 char *_getenv(const char *env);
 int _strcmp(const char *s, const char *str);
-void parse_func(const char *str, char **cmd_arr);
+void parse_func(char *str, char **cmd_arr);
 char **rm_arg(char **arr);
 char *check_for_file(char **path_arr, char *exe_name);
 char **expansion(char **);

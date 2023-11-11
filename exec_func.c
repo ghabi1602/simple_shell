@@ -17,6 +17,7 @@ int exec_cmd(const char *cmd)
 		cmd_arr[j] = NULL;
 
 	parse_func(cmd, cmd_arr);
+
 	exp = expansion(cmd_arr);
 	_strcat(link, cmd_arr[0]);
 	if(access(link,F_OK) == -1)

@@ -10,6 +10,11 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
+typedef struct builtin
+{
+	char *s;
+	void (*f)(const char **exp);
+} blt;
 /* list of declared functions */
 void disp_msg(void);
 void _print(const char *msg);
@@ -30,5 +35,7 @@ void parse_func(const char *str, char **cmd_arr);
 char **rm_arg(char **arr);
 char *check_for_file(char **path_arr, char *exe_name);
 char **expansion(char **);
+int (*exec_blt)(char **);
+int _env(char **);
 
 #endif /* SHELL_H */

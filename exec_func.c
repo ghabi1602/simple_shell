@@ -12,21 +12,25 @@ int exec_cmd(const char *cmd)
 	int j;
 	char *cmd_arr[128], **exp;
 	char link[30] = "/usr/bin/";
+	int (*p_func)(char **);
 
-	for(j = 0; j < 128; j++)
+	for (j = 0; j < 128; j++)
 		cmd_arr[j] = NULL;
 
 	parse_func(cmd, cmd_arr);
-
 	exp = expansion(cmd_arr);
+	p_func = exec_blt(exp);
+	if (p_func)
+	{
+		p_func(exp);
+		return (0); }
 	_strcat(link, cmd_arr[0]);
-	if(access(link,F_OK) == -1)
+	if (access(link, F_OK) == -1)
 	{
 		perror(cmd_arr[0]);
 		return (-1);
 	}
 	c_pid = fork();
-
 	/* handles error if child not created */
 	if (c_pid == -1)
 	{

@@ -72,25 +72,20 @@ void parse_func(char *str, char **cmd_arr)
 {
 	int i, j;
 	char *tok;
-	char *s;
+	char buff[128];
 
 
 	tok = strtok(str, " ");
-	s = malloc(sizeof(char) * _strlen(tok) + 1);
-	if (!s)
-		return;
+
 	i = 0;
 	while (tok != NULL)
 	{
-		_strcpy(s, tok);
-		cmd_arr[i] = _strdup(s);
-		free(s);
+		_strcpy(buff, tok);
+		cmd_arr[i] = _strdup(buff);
 		tok = strtok(NULL, " ");
 		i++;
-		s = malloc(sizeof(char) * _strlen(tok) + 1);
-		if (!s)
-			return;
+		for (j = 0; j < 128; j++)
+			buff[j] = '\0';
 	}
-	free(s);
 	cmd_arr[i] = NULL;
 }

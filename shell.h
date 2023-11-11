@@ -14,7 +14,7 @@
 void disp_msg(void);
 void _print(const char *msg);
 int _strlen(const char *msg);
-int exec_cmd(const char *cmd);
+int exec_cmd(char *cmd);
 char *reader(void);
 char *_memset(char *s, char b, unsigned int n);
 char *_memcpy(char *dest, char *src, unsigned int n);

@@ -1,8 +1,16 @@
 #include "shell.h"
 
-int find_delim(char *str, const char *delim)
+/**
+ * find_delim - this checks for delim
+ * @str: string holder
+ * @delim: the delim
+ * Return: returns 1  or 0
+ */
+
+int find_delim(char str[], const char *delim)
 {
 	unsigned int a, b, c;
+
 	for (a = 0, c = 0; str[a]; a++)
 	{
 		for (b = 0; delim[b]; b++)
@@ -30,6 +38,7 @@ char *_strtok(char str[], const char *delim)
 	static char *sep_str, *str_end;
 	char *str_start;
 	unsigned int i, b;
+
 	if (str != NULL)
 	{
 		if (find_delim(str, delim))

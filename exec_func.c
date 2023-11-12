@@ -4,7 +4,6 @@
 * exec_cmd - execute the command from the user input
 * @cmd: list of string entered by thte user
 */
-extern char **environ;
 
 int exec_cmd(char *cmd)
 {
@@ -32,8 +31,7 @@ int exec_cmd(char *cmd)
 		return (-1);
 	}
 	c_pid = fork();
-	/* handles error if child not created */
-	if (c_pid == -1)
+	if (c_pid == -1) /* handles if child not created */
 	{
 		perror("fork");
 		exit(EXIT_FAILURE);

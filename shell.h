@@ -15,12 +15,15 @@ typedef struct builtin
 	char *s;
 	int (*f)(char **exp);
 } blt;
+
 /* list of declared functions */
 void disp_msg(void);
 void _print(const char *msg);
 int _strlen(const char *msg);
 int exec_cmd(char *cmd);
 char *reader(void);
+
+/* string function declarations */
 char *_memset(char *s, char b, unsigned int n);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
@@ -28,6 +31,8 @@ char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest,const char *src);
 char *_strdup(const char *str);
 size_t _strcspn(const char *str, const char *reject);
+
+/* builtins and manipulation */
 void _printenv(void);
 char *_getenv(const char *env);
 int _strcmp(const char *s, const char *str);

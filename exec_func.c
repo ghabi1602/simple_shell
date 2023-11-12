@@ -6,7 +6,7 @@
 */
 extern char **environ;
 
-char *exec_cmd(const char *cmd)
+int exec_cmd(char *cmd)
 {
 	pid_t c_pid; /* creates a child process */
 	int j;
@@ -19,11 +19,12 @@ char *exec_cmd(const char *cmd)
 
 	parse_func(cmd, cmd_arr);
 	exp = expansion(cmd_arr);
-	p_func = exec_blt(exp);
+	p_func = exec_blt(cmd_arr);
 	if (p_func)
 	{
 		p_func(exp);
-		return (0); }
+		return (0);
+	}
 	_strcat(link, cmd_arr[0]);
 	if (access(link, F_OK) == -1)
 	{

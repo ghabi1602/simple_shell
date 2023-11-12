@@ -5,21 +5,22 @@
  * @exp: array of strings
  * Return: function
  */
-int (*exec_blt)(char **exp) 
+int (*exec_blt(char **exp))(char **exp) 
 {
-	blt func_arr = {
-		{"cd", _cd},
+	blt func_arr[] =
+	{
 		{"env", _env},
-		{"setenv", _setenv},
+		/*{"setenv", _setenv},
 		{"unsetenv", _unsetenv},
-		{"exit", _exit},
+		{"exit", _exit},*/
 		{NULL, NULL}
 	};
 	int i;
+	int num = 2;
 
-	for (i = 0; func_arr[i].s != NULL; i++)
+	for (i = 0; i < num; i++)
 	{
-		if (_strcmp(exp[0], func_arr[i].s) == 1)
+		if (func_arr[i].s == exp[0])
 			return (func_arr[i].f);
 	}
 	return (NULL);

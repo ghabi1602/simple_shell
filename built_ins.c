@@ -44,7 +44,7 @@ int _setenv(char **exp)
 		return (1); }
 	while (environ[i] != NULL)
 	{
-		tok = strtok(environ[i], '=');
+		tok = strtok(environ[i], "=");
 		if (_strcmp(tok, exp[1]) == 1)
 		{
 			environ[i] = _realloc(environ[i], sizeof(char) * _strlen(environ[i])
@@ -52,7 +52,7 @@ int _setenv(char **exp)
 			if (!environ[i])
 				return (-1);
 			environ[i] = _strdup(exp[1]);
-			_strcat(environ[i], '=');
+			_strcat(environ[i], "=");
 			_strcat(environ[i], exp[2]);
 			return (1); }
 		i++; }
@@ -83,7 +83,7 @@ int _unsetenv(char **exp)
 	}
 	while (environ[i] != NULL)
 	{
-		tok = strtok(environ[i], '=');
+		tok = strtok(environ[i], "=");
 		if (_strcmp(tok, exp[1]) == 1)
 		{
 			for (j = i; environ[j] != NULL; j++)

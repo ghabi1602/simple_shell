@@ -106,7 +106,7 @@ char *_strcat(char *dest, char *src)
  * @src: string to be copied
  * Return: pointer to the new copy
  */
-char *_strcpy(char *dest, char *src)
+char *_strcpy(char *dest, const char *src)
 {
 	int len = 0, i;
 

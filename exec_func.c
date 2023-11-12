@@ -6,7 +6,7 @@
 */
 extern char **environ;
 
-int exec_cmd(const char *cmd)
+char *exec_cmd(const char *cmd)
 {
 	pid_t c_pid; /* creates a child process */
 	int j;

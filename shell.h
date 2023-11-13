@@ -9,7 +9,8 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <sys/wait.h>
-
+#include <limits.h>
+#include <errno.h>
 extern char **environ;
 /**
  * struct builtin - funtion pointer variables
@@ -24,6 +25,19 @@ typedef struct builtin
 	char *s;
 	int (*f)(char **exp);
 } blt;
+
+/**
+ * struct cd_struct - point to a function
+ * @s: name of func to point to
+ * @f: func pointer
+ * Description: this hlep the cd to handle func
+ */
+
+typedef struct cd_struct
+{
+	char *s;
+	int (*f)(char **exp);
+} cd_st;
 
 /* list of declared functions */
 void disp_msg(void);
@@ -53,5 +67,11 @@ char *check_for_file(char **path_arr, char *exe_name);
 char **expansion(char **);
 int (*exec_blt(char **exp))(char **exp);
 int _env(char **);
+void free_mem(char *buf[]);
 
+/* list of cd functions */
+void _pwd();
+void cd_to(char *cmd_arr[]);
+int cd_prev();
+int (*select_cd(char **exp))();
 #endif /* SHELL_H */

@@ -48,3 +48,20 @@ int exec_cmd(char *cmd)
 	}
 	return (0);
 }
+
+/**
+ * free_mem - free memory from malloc
+ * @buf: the buffer to ber released
+ */
+/**
+void free_mem(char *buf[])
+{
+	int len;
+
+	for(len = 0; buf[len] != '\0'; len++)
+		;
+	for(; buf[len] != '\0'; len--)
+	{
+		free(buf[len]);
+	}
+} */

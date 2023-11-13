@@ -40,6 +40,8 @@ char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, const char *src);
 char *_strdup(const char *str);
 size_t _strcspn(const char *str, const char *reject);
+int find_delim(char str[], const char *delim);
+char *_strtok(char str[], const char *delim);
 
 /* builtins and manipulation */
 void _printenv(void);

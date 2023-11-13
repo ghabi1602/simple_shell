@@ -77,7 +77,7 @@ void parse_func(const char *str, char **cmd_arr)
 	char buff[128];
 
 
-	tok = _strtok((char *)str, " ");
+	tok = strtok((char *)str, " ");
 
 	i = 0;
 	while (tok != NULL)

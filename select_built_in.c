@@ -11,17 +11,16 @@ int (*exec_blt(char **exp))(char **exp)
 	blt func_arr[] = {
 		{"env", _env},
 		{"setenv", _setenv},
-		/**{"unsetenv", _unsetenv},
-		 *{"exit", _exit},
+		{"unsetenv", _unsetenv},
+		/* *{"exit", _exit},
 		 */
 		{NULL, NULL}
 	};
 	int i;
-	int num = 3;
 
-	for (i = 0; i < num; i++)
+	for (i = 0; func_arr[i].s != NULL; i++)
 	{
-		if (func_arr[i].s == exp[0])
+		if (_strcmp(exp[0], func_arr[i].s) == 1)
 			return (func_arr[i].f);
 	}
 	return (NULL);

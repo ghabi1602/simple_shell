@@ -18,11 +18,11 @@ int exec_cmd(char *cmd)
 
 	parse_func(cmd, cmd_arr);
 	exp = expansion(cmd_arr);
-	p_func = exec_blt(cmd_arr);
+	p_func = exec_blt(exp);
 	if (p_func)
 	{
 		p_func(exp);
-		return (0);
+		return (-1);
 	}
 	_strcat(link, cmd_arr[0]);
 	if (access(link, F_OK) == -1)

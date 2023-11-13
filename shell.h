@@ -51,7 +51,8 @@ void parse_func(const char *str, char **cmd_arr);
 char **rm_arg(char **arr);
 char *check_for_file(char **path_arr, char *exe_name);
 char **expansion(char **);
-int (*exec_blt(char **exp))(char **exp);
+int (*exec_blt(char **))(char **);
 int _env(char **);
+int _setenv(char **);
 
 #endif /* SHELL_H */

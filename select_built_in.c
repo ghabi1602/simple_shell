@@ -10,9 +10,8 @@ int (*exec_blt(char **exp))(char **exp)
 {
 	blt func_arr[] = {
 		{"env", _env},
-		/**
-		 *{"setenv", _setenv},
-		 *{"unsetenv", _unsetenv},
+		{"setenv", _setenv},
+		/**{"unsetenv", _unsetenv},
 		 *{"exit", _exit},
 		 */
 		{NULL, NULL}

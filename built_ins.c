@@ -1,6 +1,5 @@
 #include "shell.h"
 
-extern char **environ;
 /**
  * _env - prints environments
  * @exp: array of input strings

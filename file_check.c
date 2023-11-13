@@ -2,7 +2,9 @@
 
 /**
  * check_for_file - looks for a file in a directory
- * @path: the path to the dir
+ * @path_arr: the path to the dir
+ * @exe_name: the first element of input
+ * Return: returns path to the file and NULL on error
  */
 char *check_for_file(char *path_arr[], char *exe_name)
 {
@@ -17,7 +19,7 @@ char *check_for_file(char *path_arr[], char *exe_name)
 	/* iterating through the path_arr */
 	while (path_arr != NULL)
 	{
-		c_path = path_arr[i]; 
+		c_path = path_arr[i];
 		_strcat(c_path, exe_name);
 
 		if (c_path != NULL)
@@ -40,7 +42,7 @@ char *check_for_file(char *path_arr[], char *exe_name)
 }
 
 /**
- * rm_arg_0 - function remove the first arg in an array
+ * rm_arg - function remove the first arg in an array
  * @arr: the array
  * Return: retrun the rest of the array
  */

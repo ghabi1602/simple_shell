@@ -10,6 +10,15 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
+extern char **environ;
+/**
+ * struct builtin - funtion pointer variables
+ * @s: name of the func to point
+ * @f: function pointer
+ *
+ * Description: this help with the function that point to builtins
+ */
+
 typedef struct builtin
 {
 	char *s;
@@ -28,7 +37,7 @@ char *_memset(char *s, char b, unsigned int n);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *_strcat(char *dest, char *src);
-char *_strcpy(char *dest,const char *src);
+char *_strcpy(char *dest, const char *src);
 char *_strdup(const char *str);
 size_t _strcspn(const char *str, const char *reject);
 

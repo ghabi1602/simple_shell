@@ -4,7 +4,6 @@
  * _printenv - prints the environments
  * Return: void
  */
-extern char **environ;
 
 void _printenv(void)
 {
@@ -85,7 +84,6 @@ char **expansion(char **cmd_arr)
 		exp[i] = malloc(sizeof(char) * _strlen(cmd_arr[i]) + 1);
 		if (!exp[i])
 			return (NULL);
-
 		if (cmd_arr[i][0] == '$')
 		{
 			c = 0;
@@ -100,7 +98,6 @@ char **expansion(char **cmd_arr)
 
 				if (!exp[i])
 					return (NULL);
-
 				exp[i] = _strdup(str);
 			}
 			else
@@ -116,4 +113,3 @@ char **expansion(char **cmd_arr)
 	exp[i] = NULL;
 	return (exp);
 }
-

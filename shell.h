@@ -55,5 +55,6 @@ int (*exec_blt(char **))(char **);
 int _env(char **);
 int _setenv(char **exp);
 int _unsetenv(char **exp);
+int __exit(int);
 
 #endif /* SHELL_H */

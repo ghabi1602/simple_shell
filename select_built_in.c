@@ -12,8 +12,7 @@ int (*exec_blt(char **exp))(char **exp)
 		{"env", _env},
 		{"setenv", _setenv},
 		{"unsetenv", _unsetenv},
-		/* *{"exit", _exit},
-		 */
+		/*{"exit", _exit},*/
 		{NULL, NULL}
 	};
 	int i;

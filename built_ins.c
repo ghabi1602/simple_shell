@@ -106,3 +106,12 @@ int _unsetenv(char **exp)
 	}
 	return (-1);
 }
+/**
+ * _exit - exit the program
+ * @status: exit status
+ * Return: int
+ */
+int __exit(int status)
+{
+	_exit(status);
+}

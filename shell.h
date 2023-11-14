@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <sys/wait.h>
+#include <signal.h>
 
 extern char **environ;
 /**
@@ -29,7 +30,7 @@ typedef struct builtin
 void disp_msg(void);
 void _print(const char *msg);
 int _strlen(const char *msg);
-int exec_cmd(char *cmd);
+int exec_cmd(char *cmd, int);
 char *reader(void);
 
 /* string function declarations */
@@ -47,7 +48,7 @@ char *_strtok(char str[], const char *delim);
 void _printenv(void);
 char *_getenv(const char *env);
 int _strcmp(const char *s, const char *str);
-void parse_func(const char *str, char **cmd_arr);
+char **parse_func(const char *str);
 char **rm_arg(char **arr);
 char *check_for_file(char **path_arr, char *exe_name);
 char **expansion(char **);
@@ -55,6 +56,7 @@ int (*exec_blt(char **))(char **);
 int _env(char **);
 int _setenv(char **exp);
 int _unsetenv(char **exp);
-int __exit(int);
+void __exit(char *, int);
+int check_exit(char **);
 
 #endif /* SHELL_H */

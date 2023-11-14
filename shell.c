@@ -9,13 +9,13 @@
 int main(void)
 {
 	char *buffer;
-	pid_t pid;
+	int pid = getpid();
 
 	while (true)
 	{
 		disp_msg();
 		buffer = reader();
-		exec_cmd(buffer);
+		exec_cmd(buffer, pid);
 	}
 
 	free(buffer);

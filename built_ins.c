@@ -107,11 +107,47 @@ int _unsetenv(char **exp)
 	return (-1);
 }
 /**
- * _exit - exit the program
- * @status: exit status
+ * check_exit - exit the program
+ * @exp: array of input strings
  * Return: int
  */
-int __exit(int status)
+int check_exit(char **exp)
 {
-	_exit(status);
+	int i, len;
+
+	len = 0;
+	while (exp[len] != NULL)
+		len++;
+
+	if (len > 2)
+	{
+		return (-1);
+	}
+	if (_strcmp(exp[0], "exit") != 1)
+	{
+		return (-1);
+	}
+	if (len == 2)
+	{
+		for (i = 0; exp[1][i] != '\0'; i++)
+			if (exp[1][i] < '0' || exp[1][i] > '9')
+				return (-1);
+	}
+	return (1);
+}
+/**
+ * __exit - exits the shell
+ * @s: the status
+ * @x: the main PID
+ * Return: void
+ */
+void __exit(char *s, int x)
+{
+	if (s)
+	{
+		_print(s);
+		_print("\n");
+	}
+
+	kill(x, SIGKILL);
 }

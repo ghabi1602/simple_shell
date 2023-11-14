@@ -67,27 +67,37 @@ char **rm_arg(char **arr)
 /**
  * parse_func - parses a function into tokens
  * @str: the string to be parsed
- * @cmd_arr: where the array will be stored outside the func
+ * Return: char *
  */
 
-void parse_func(const char *str, char **cmd_arr)
+char **parse_func(const char *str)
 {
-	int i, j;
-	char *tok;
+	int i, j, len, c;
+	char *tok, **s;
 	char buff[128];
 
+	len = 0;
+	c = 0;
+	while (str[c] != '\0')
+	{
+		if (str[c] == 32)
+			len++;
+		c++;
+	}
+	s = malloc(sizeof(char *) * (len + 2));
 
 	tok = strtok((char *)str, " ");
 
 	i = 0;
 	while (tok != NULL)
 	{
+		s[i] = malloc(sizeof(char) * _strlen(tok) + 1);
 		_strcpy(buff, tok);
-		cmd_arr[i] = _strdup(buff);
+		s[i] = _strdup(buff);
 		tok = strtok(NULL, " ");
 		i++;
 		for (j = 0; j < 128; j++)
 			buff[j] = '\0';
 	}
-	cmd_arr[i] = NULL;
+	return (s);
 }

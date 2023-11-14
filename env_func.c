@@ -5,13 +5,13 @@
  * Return: void
  */
 
-void _printenv(void)
+void _printenv(char **cpenv)
 {
 	int i;
 
-	for (i = 0; environ[i] != NULL; i++)
+	for (i = 0; cpenv[i] != NULL; i++)
 	{
-		_print(environ[i]);
+		_print(cpenv[i]);
 		_print("\n");
 	}
 }
@@ -30,18 +30,18 @@ char *_getenv(const char *env)
 		return (NULL);
 
 	i = 0;
-	while (environ[i] != NULL)
+	while (cpenv[i] != NULL)
 	{
-		pos = _strcspn(environ[i], "=");
+		pos = _strcspn(cpenv[i], "=");
 		s = malloc(sizeof(char) * (pos + 1));
 		if (s == NULL)
 			return (NULL);
 
 		for (j = 0; j < pos; j++)
-			s[j] = environ[i][j];
+			s[j] = cpenv[i][j];
 		if (_strcmp(s, env) == 1)
 		{
-			len = _strlen(environ[i]) - pos;
+			len = _strlen(cpenv[i]) - pos;
 			str_env = malloc(sizeof(char) * len);
 			if (str_env == NULL)
 			{
@@ -50,9 +50,9 @@ char *_getenv(const char *env)
 			}
 
 			c = 0;
-			for (j = pos + 2; environ[i][j] != '\0'; j++, c++)
+			for (j = pos + 2; cpenv[i][j] != '\0'; j++, c++)
 			{
-				str_env[c] = environ[i][j];
+				str_env[c] = cpenv[i][j];
 			}
 			free(s);
 			return (str_env);
@@ -112,4 +112,30 @@ char **expansion(char **cmd_arr)
 	}
 	exp[i] = NULL;
 	return (exp);
+}
+/**
+ * copy_env - copies environ
+ * @cpenv: array of strings
+ * Return: void
+ */
+void copy_env(char **cpenv)
+{
+	int len, i;
+
+	len = 0;
+	while (environ[len] != NULL)
+		len++;
+
+	cpenv = malloc(sizeof(char *) * (len + 1));
+	if (!cpenv)
+		return;
+
+	i = 0;
+	while (environ[i] != NULL)
+	{
+		cpenv[i] = malloc(sizeof(char) * _strlen(environ[i]) + 1);
+		if (!cpenv[i])
+			return;
+		cpenv[i] = _strdup(environ[i]);
+	}
 }

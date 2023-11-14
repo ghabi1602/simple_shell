@@ -4,15 +4,16 @@
 * exec_cmd - execute the command from the user input
 * @cmd: list of string entered by thte user
 * @pid: the main's PID
+* @cpenv: array of environments
 * Return: int
 */
 
-int exec_cmd(char *cmd, int pid)
+int exec_cmd(char *cmd, int pid, char **cpenv)
 {
 	pid_t c_pid; /* creates a child process */
 	char **cmd_arr, **exp;
 	char link[30] = "/usr/bin/";
-	int (*p_func)(char **);
+	int (*p_func)(char **, char **);
 
 	cmd_arr = parse_func(cmd);
 	exp = expansion(cmd_arr);
@@ -21,7 +22,7 @@ int exec_cmd(char *cmd, int pid)
 	p_func = exec_blt(exp);
 	if (p_func != NULL)
 	{
-		p_func(exp);
+		p_func(exp, cpenv);
 		return (-1);
 	}
 	_strcat(link, exp[0]);

@@ -6,7 +6,7 @@
  * Return: function
  */
 
-int (*exec_blt(char **exp))(char **exp)
+int (*exec_blt(char **exp))(char **exp, char **cpenv)
 {
 	blt func_arr[] = {
 		{"env", _env},

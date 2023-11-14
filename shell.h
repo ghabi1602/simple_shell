@@ -30,7 +30,7 @@ typedef struct builtin
 void disp_msg(void);
 void _print(const char *msg);
 int _strlen(const char *msg);
-int exec_cmd(char *cmd, int);
+int exec_cmd(char *cmd, int, char **);
 char *reader(void);
 
 /* string function declarations */
@@ -45,7 +45,7 @@ int find_delim(char str[], const char *delim);
 char *_strtok(char str[], const char *delim);
 
 /* builtins and manipulation */
-void _printenv(void);
+void _printenv(char **);
 char *_getenv(const char *env);
 int _strcmp(const char *s, const char *str);
 char **parse_func(const char *str);
@@ -54,9 +54,10 @@ char *check_for_file(char **path_arr, char *exe_name);
 char **expansion(char **);
 int (*exec_blt(char **))(char **);
 int _env(char **);
-int _setenv(char **exp);
-int _unsetenv(char **exp);
+int _setenv(char **exp, char **cpenv);
+int _unsetenv(char **exp, char **cpenv);
 void __exit(char *, int);
 int check_exit(char **);
+void copy_env(char **);
 
 #endif /* SHELL_H */

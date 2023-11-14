@@ -8,14 +8,15 @@
 
 int main(void)
 {
-	char *buffer;
+	char *buffer, **cpenv;
 	int pid = getpid();
 
+	copy_env(cpenv);
 	while (true)
 	{
 		disp_msg();
 		buffer = reader();
-		exec_cmd(buffer, pid);
+		exec_cmd(buffer, pid, cpenv);
 	}
 
 	free(buffer);

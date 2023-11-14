@@ -15,7 +15,7 @@ int _env(__attribute__((unused)) char **exp)
  * @exp: array of input strings
  * Return: integer
  */
-int _setenv(char **exp)
+int _setenv(char **exp, char **cpenv)
 {
 	char *res, *tok;
 	int lenenv = 0, lenenv2 = 0, len = 0, i = 0;
@@ -26,38 +26,33 @@ int _setenv(char **exp)
 	{
 		perror("Failed number of arguments");
 		return (-1); }
-	while (environ[lenenv] != NULL)
+	while (cpenv[lenenv] != NULL)
 		lenenv++;
-	printf("here is the length before :%d\n", lenenv);
 	res = _getenv(exp[1]);
 	if (!res)
 	{
-		environ = _realloc(environ, sizeof(char *) * lenenv, sizeof(char *)
-				* (lenenv + 1));
-
-		while (environ[lenenv2] != NULL)
-			lenenv2++;
-		printf("here is the length afrer realloc: %d\n", lenenv2);
-		if (!environ)
+		cpenv = _realloc(cpenv, sizeof(char *) * (lenenv + 1), sizeof(char *)
+				* (lenenv + 2));
+		if (!cpenv)
 			return (-1);
-		environ[lenenv] = malloc(sizeof(char) * _strlen(exp[2]) + 1);
-		if (!environ[len])
+		cpenv[lenenv] = malloc(sizeof(char) * _strlen(exp[2]) + 1);
+		if (!cpenv[len])
 			return (-1);
-		environ[lenenv] = _strdup(exp[2]);
-		environ[lenenv + 1] = NULL;
+		cpenv[lenenv] = _strdup(exp[2]);
+		cpenv[lenenv + 1] = NULL;
 		return (1); }
-	while (environ[i] != NULL)
+	while (cpenv[i] != NULL)
 	{
-		tok = strtok(environ[i], "=");
+		tok = strtok(cpenv[i], "=");
 		if (_strcmp(tok, exp[1]) == 1)
 		{
-			environ[i] = _realloc(environ[i], sizeof(char) * _strlen(environ[i])
+			cpenv[i] = _realloc(cpenv[i], sizeof(char) * _strlen(cpenv[i])
 			, sizeof(char) * (_strlen(exp[1]) + _strlen(exp[2])) + 2);
-			if (!environ[i])
+			if (!cpenv[i])
 				return (-1);
-			environ[i] = _strdup(exp[1]);
-			_strcat(environ[i], "=");
-			_strcat(environ[i], exp[2]);
+			cpenv[i] = _strdup(exp[1]);
+			_strcat(cpenv[i], "=");
+			_strcat(cpenv[i], exp[2]);
 			return (1); }
 		i++; }
 	return (1);
@@ -67,7 +62,7 @@ int _setenv(char **exp)
  * @exp: array of input strings
  * Return: int
  */
-int _unsetenv(char **exp)
+int _unsetenv(char **exp, char **cpenv)
 {
 	int len = 0, i = 0, j;
 	char *p, *tok;
@@ -85,21 +80,21 @@ int _unsetenv(char **exp)
 		perror("Failed: variable doesnt exist!");
 		return (-1);
 	}
-	while (environ[i] != NULL)
+	while (cpenv[i] != NULL)
 	{
-		tok = strtok(environ[i], "=");
+		tok = strtok(cpenv[i], "=");
 		if (_strcmp(tok, exp[1]) == 1)
 		{
-			for (j = i; environ[j] != NULL; j++)
+			for (j = i; cpenv[j] != NULL; j++)
 			{
-				environ[j] = _realloc(environ[j], sizeof(char)
-* _strlen(environ[j]), sizeof(char) * _strlen(environ[j + 1]));
+				cpenv[j] = _realloc(cpenv[j], sizeof(char)
+* _strlen(cpenv[j]), sizeof(char) * _strlen(cpenv[j + 1]));
 
-				if (!environ[j])
+				if (!cpenv[j])
 					return (-1);
-				environ[j] = _strdup(environ[j + 1]);
+				cpenv[j] = _strdup(cpenv[j + 1]);
 			}
-			free(environ[j]);
+			free(cpenv[j]);
 			return (1);
 		}
 		i++;

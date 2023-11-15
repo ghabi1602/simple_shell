@@ -40,7 +40,7 @@ int exec_cmd(char *cmd, int pid, char **cpenv __attribute__((unused)))
 	else if (c_pid == 0)
 	{
 		execve(link, exp, environ);
-		perror("execve");
+		perror("./hsh");
 		exit(EXIT_FAILURE);
 	}
 	else

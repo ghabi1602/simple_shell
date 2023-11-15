@@ -1,7 +1,8 @@
 #include "shell.h"
 
 /**
- * _printenv - prints the environments
+ * _env - prints the environments
+ * @exp: array of input strings
  * Return: void
  */
 
@@ -19,7 +20,8 @@ int _env(__attribute__((unused)) char **exp)
 
 /**
  * _getenv - gets an environment variable
- * @env: the environment variable to search for
+ * @env: string
+ * @cpenv: array of environments
  * Return: pointer to the corresponding value string.
  */
 char *_getenv(const char *env, char **cpenv)
@@ -94,24 +96,20 @@ char **expansion(char **cmd_arr)
 
 				if (!exp[i])
 					return (NULL);
-				exp[i] = _strdup(str);
-			}
+				exp[i] = _strdup(str); }
 			else
 			{
-				exp[i] = _strdup(cmd_arr[i]);
-			}
+				exp[i] = _strdup(cmd_arr[i]); }
 		}
 		else
 		{
-			exp[i] = _strdup(cmd_arr[i]);
-		}
+			exp[i] = _strdup(cmd_arr[i]); }
 	}
 	exp[i] = NULL;
 	return (exp);
 }
 /**
  * copy_env - copies environ
- * @cpenv: array of strings
  * Return: void
  */
 char **copy_env()

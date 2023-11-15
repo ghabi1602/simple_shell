@@ -1,21 +1,9 @@
 #include "shell.h"
 
 /**
- * _pwd - prints the current working directory
- */
-
-void _pwd(void)
-{
-	char buf[PATH_MAX];
-
-	getcwd(buf, sizeof(buf));
-	_print(buf);
-}
-
-/**
- * cd_to - changes to a given dir
- * @environ: takes in the environment
+ * cd_to - changes to a given dirt
  * @cmd_arr: the args of the input
+ * Return: int
  */
 
 int cd_to(char *cmd_arr[])
@@ -47,11 +35,10 @@ int cd_to(char *cmd_arr[])
 
 /**
  * cd_prev - change to the previous directory
- * @environ: the shell environ
  * Return: no return
  */
 
-int cd_prev()
+int cd_prev(void)
 {
 	char buf[PATH_MAX];
 	char *cwd_cpy, *p_old, *old_cwd, *old_cwd_cpy;
@@ -145,6 +132,11 @@ int cd_back(void)
 	return (1);
 }
 
+/**
+ * rm_cwd - removes a directory
+ * @str: string
+ * Return: pointer to a string
+ */
 char *rm_cwd(char *str)
 {
 	int i, j, len = _strlen(str);

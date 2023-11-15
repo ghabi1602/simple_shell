@@ -3,6 +3,7 @@
 /**
  * _setenv - sets a new environment
  * @exp: array of input strings
+ * @cpenv: array of environments
  * Return: integer
  */
 int _setenv(char **exp, char **cpenv)
@@ -50,6 +51,7 @@ int _setenv(char **exp, char **cpenv)
 /**
  * _unsetenv - deletes an environment
  * @exp: array of input strings
+ * @cpenv: array of strings
  * Return: int
  */
 int _unsetenv(char **exp, char **cpenv)
@@ -129,6 +131,7 @@ int check_exit(char **exp)
 void __exit(char *s, char *x)
 {
 	int a = _atoi(x);
+
 	if (s)
 	{
 		_print(s);

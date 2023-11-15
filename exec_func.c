@@ -8,7 +8,8 @@
 * Return: int
 */
 
-int exec_cmd(char *cmd, int pid __attribute__((unused)), char **cpenv __attribute__((unused)))
+int exec_cmd(char *cmd, int pid __attribute__((unused)),
+		char **cpenv __attribute__((unused)))
 {
 	pid_t c_pid; /* creates a child process */
 	char **cmd_arr, **exp;

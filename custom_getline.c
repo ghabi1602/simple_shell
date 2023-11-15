@@ -78,6 +78,6 @@ ssize_t _getline(char **ptr, size_t *k, FILE *strm)
 	retv = inpt;
 	if (i != 0)
 		inpt = 0;
-	
+
 	return (retv);
 }

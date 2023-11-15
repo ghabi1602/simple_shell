@@ -3,7 +3,6 @@
 /**
  * exec_blt - selects the builtin to execute
  * @exp: array of strings
- * @cpenv: copy of envrionment
  * Return: function
  */
 
@@ -29,7 +28,6 @@ int (*exec_blt(char **exp))(char **exp)
 /**
  * select_cd - choose the cd option
  * @exp: array of string after cd
- * @cpenv: copy environ
  * Return: return 1 on success
  */
 

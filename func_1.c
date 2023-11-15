@@ -35,6 +35,11 @@ void disp_msg(void)
 		_print("$ ");
 }
 
+/**
+ * _atoi - converts
+ * @str: string
+ * Return: int
+ */
 int _atoi(char *str)
 {
 	int res = 0;

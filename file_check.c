@@ -102,3 +102,13 @@ char **parse_func(const char *str)
 	}
 	return (s);
 }
+/**
+ * _pwd - prints the current working directory
+ */
+void _pwd(void)
+{
+	char buf[PATH_MAX];
+
+	getcwd(buf, sizeof(buf));
+	_print(buf);
+}

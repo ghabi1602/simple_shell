@@ -67,6 +67,7 @@ int cd_prev(void)
 	setenv("OLDPWD", buf, 1);
 	chdir(old_cwd);
 
+	free(old_cwd_cpy);
 	return (1);
 }
 

@@ -43,7 +43,6 @@ char *_getenv(const char *env, char **cpenv)
 			str_env = malloc(sizeof(char) * len);
 			if (str_env == NULL)
 			{
-				free(s);
 				return (NULL);
 			}
 
@@ -52,12 +51,10 @@ char *_getenv(const char *env, char **cpenv)
 			{
 				str_env[c] = cpenv[i][j];
 			}
-			free(s);
 			return (str_env);
 		}
 		i++;
 	}
-	free(s);
 	return (NULL);
 }
 /**
@@ -96,16 +93,15 @@ char **expansion(char **cmd_arr)
 
 				if (!exp[i])
 					return (NULL);
-				exp[i] = _strdup(str); }
+				_strcpy(exp[i], str); }
 			else
 			{
-				exp[i] = _strdup(cmd_arr[i]); }
+				_strcpy(exp[i], cmd_arr[i]); }
 		}
 		else
 		{
-			exp[i] = _strdup(cmd_arr[i]); }
+			_strcpy(exp[i], cmd_arr[i]); }
 	}
-	exp[i] = NULL;
 	return (exp);
 }
 /**
@@ -128,9 +124,6 @@ char **copy_env()
 	i = 0;
 	while (environ[i] != NULL)
 	{
-		s[i] = malloc(sizeof(char) * _strlen(environ[i]) + 1);
-		if (!s[i])
-			return (NULL);
 		s[i] = _strdup(environ[i]);
 		i++;
 	}

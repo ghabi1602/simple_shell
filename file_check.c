@@ -47,7 +47,7 @@ char *check_for_file(char *path_arr[], char *exe_name)
  * Return: retrun the rest of the array
  */
 
-char **rm_arg(char **arr)
+/*char **rm_arg(char **arr)
 {
 	int i, len = 0;
 
@@ -64,7 +64,7 @@ char **rm_arg(char **arr)
 	free(arr);
 	return (arr);
 }
-
+*/
 /**
  * parse_func - parses a function into tokens
  * @str: the string to be parsed
@@ -92,7 +92,6 @@ char **parse_func(const char *str)
 	i = 0;
 	while (tok != NULL)
 	{
-		s[i] = malloc(sizeof(char) * _strlen(tok) + 1);
 		_strcpy(buff, tok);
 		s[i] = _strdup(buff);
 		tok = _strtok(NULL, " ");

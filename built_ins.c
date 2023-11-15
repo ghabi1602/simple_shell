@@ -22,15 +22,15 @@ int _setenv(char **exp, char **cpenv)
 	res = _getenv(exp[1], cpenv);
 	if (!res)
 	{
-		cpenv = _realloc(cpenv, sizeof(char *) * (lenenv + 1), sizeof(char *)
-				* (lenenv + 2));
+		cpenv = _realloc(cpenv, sizeof(char *) * lenenv, sizeof(char *)
+				* (lenenv + 1));
 		if (!cpenv)
 			return (-1);
-		cpenv[lenenv + 1] = malloc(sizeof(char) * _strlen(exp[2]) + 1);
+		cpenv[lenenv] = malloc(sizeof(char) * _strlen(exp[2]) + 1);
 		if (!cpenv[len])
 			return (-1);
-		cpenv[lenenv + 1] = _strdup(exp[2]);
-		cpenv[lenenv + 2] = NULL;
+		_strcpy(cpenv[lenenv], exp[2]);
+		cpenv[lenenv + 1] = NULL;
 		return (1); }
 	while (cpenv[i] != NULL)
 	{
@@ -41,7 +41,7 @@ int _setenv(char **exp, char **cpenv)
 			, sizeof(char) * (_strlen(exp[1]) + _strlen(exp[2])) + 2);
 			if (!cpenv[i])
 				return (-1);
-			cpenv[i] = _strdup(exp[1]);
+			_strcpy(cpenv[i], exp[1]);
 			_strcat(cpenv[i], "=");
 			_strcat(cpenv[i], exp[2]);
 			return (1); }
@@ -79,14 +79,10 @@ int _unsetenv(char **exp, char **cpenv)
 		{
 			for (j = i; cpenv[j] != NULL; j++)
 			{
-				cpenv[j] = _realloc(cpenv[j], sizeof(char)
-* _strlen(cpenv[j]), sizeof(char) * _strlen(cpenv[j + 1]));
-
-				if (!cpenv[j])
-					return (-1);
+				free(cpenv[j]);
 				cpenv[j] = _strdup(cpenv[j + 1]);
 			}
-			free(cpenv[j]);
+
 			return (1);
 		}
 		i++;

@@ -51,7 +51,7 @@ int cd_to(char *cmd_arr[])
  * Return: no return
  */
 
-int cd_prev(void)
+int cd_prev()
 {
 	char buf[PATH_MAX];
 	char *cwd_cpy, *p_old, *old_cwd, *old_cwd_cpy;

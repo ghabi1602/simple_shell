@@ -8,7 +8,7 @@
 * Return: int
 */
 
-int exec_cmd(char *cmd, int pid, char **cpenv __attribute__((unused)))
+int exec_cmd(char *cmd, int pid __attribute__((unused)), char **cpenv __attribute__((unused)))
 {
 	pid_t c_pid; /* creates a child process */
 	char **cmd_arr, **exp;
@@ -18,7 +18,7 @@ int exec_cmd(char *cmd, int pid, char **cpenv __attribute__((unused)))
 	cmd_arr = parse_func(cmd);
 	exp = expansion(cmd_arr);
 	if (check_exit(exp) == 1)
-		__exit(exp[1], pid);
+		__exit(exp[0], exp[1]);
 	p_func = exec_blt(exp);
 	if (p_func != NULL)
 	{

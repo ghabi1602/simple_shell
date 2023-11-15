@@ -51,7 +51,7 @@ int _strlen(const char *msg);
 int exec_cmd(char *cmd, int, char **);
 char *reader(void);
 
-
+int _atoi(char *str);
 char *_memset(char *s, char b, unsigned int n);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
@@ -86,7 +86,7 @@ int (*exec_blt(char **))(char **);
 int _env(char **);
 int _setenv(char **exp, char **cpenv);
 int _unsetenv(char **exp, char **cpenv);
-void __exit(char *, int);
+void __exit(char *, char *);
 int check_exit(char **);
 char **copy_env();
 

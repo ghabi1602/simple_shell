@@ -126,13 +126,14 @@ int check_exit(char **exp)
  * @x: the main PID
  * Return: void
  */
-void __exit(char *s, int x)
+void __exit(char *s, char *x)
 {
+	int a = _atoi(x);
 	if (s)
 	{
 		_print(s);
 		_print("\n");
 	}
 
-	kill(x, SIGKILL);
+	exit(a);
 }

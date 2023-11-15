@@ -34,3 +34,14 @@ void disp_msg(void)
 {
 		_print("$ ");
 }
+
+int _atoi(char *str)
+{
+	int res = 0;
+
+	while (*str >= '0' &&  *str <= '9')
+	{
+		res = res * 10 + (*str++ - '0');
+	}
+	return (res);
+}

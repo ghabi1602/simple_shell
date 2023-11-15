@@ -18,7 +18,7 @@ int _env(__attribute__((unused)) char **exp)
 int _setenv(char **exp)
 {
 	char *res, *tok;
-	int lenenv = 0, len = 0, i = 0;
+	int lenenv = 0, lenenv2 = 0, len = 0, i = 0;
 
 	while (exp[len] != NULL)
 		len++;
@@ -28,18 +28,23 @@ int _setenv(char **exp)
 		return (-1); }
 	while (environ[lenenv] != NULL)
 		lenenv++;
+	printf("here is the length before :%d\n", lenenv);
 	res = _getenv(exp[1]);
 	if (!res)
 	{
-		environ = _realloc(environ, sizeof(char *) * len, sizeof(char *)
-				* (len + 1));
+		environ = _realloc(environ, sizeof(char *) * lenenv, sizeof(char *)
+				* (lenenv + 1));
+
+		while (environ[lenenv2] != NULL)
+			lenenv2++;
+		printf("here is the length afrer realloc: %d\n", lenenv2);
 		if (!environ)
 			return (-1);
-		environ[len] = malloc(sizeof(char) * _strlen(exp[2]) + 1);
+		environ[lenenv] = malloc(sizeof(char) * _strlen(exp[2]) + 1);
 		if (!environ[len])
 			return (-1);
-		environ[len] = _strdup(exp[2]);
-		environ[len + 1] = NULL;
+		environ[lenenv] = _strdup(exp[2]);
+		environ[lenenv + 1] = NULL;
 		return (1); }
 	while (environ[i] != NULL)
 	{
@@ -47,7 +52,7 @@ int _setenv(char **exp)
 		if (_strcmp(tok, exp[1]) == 1)
 		{
 			environ[i] = _realloc(environ[i], sizeof(char) * _strlen(environ[i])
-			+ 1, sizeof(char) * (_strlen(exp[1]) + _strlen(exp[2])) + 2);
+			, sizeof(char) * (_strlen(exp[1]) + _strlen(exp[2])) + 2);
 			if (!environ[i])
 				return (-1);
 			environ[i] = _strdup(exp[1]);

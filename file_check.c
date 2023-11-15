@@ -61,6 +61,7 @@ char **rm_arg(char **arr)
 		arr[i] = _strdup(arr[i + 1]);
 	}
 	arr[i] = NULL;
+	free(arr);
 	return (arr);
 }
 
@@ -77,14 +78,14 @@ void parse_func(const char *str, char **cmd_arr)
 	char buff[128];
 
 
-	tok = strtok((char *)str, " ");
+	tok = _strtok((char *)str, " ");
 
 	i = 0;
 	while (tok != NULL)
 	{
 		_strcpy(buff, tok);
 		cmd_arr[i] = _strdup(buff);
-		tok = strtok(NULL, " ");
+		tok = _strtok(NULL, " ");
 		i++;
 		for (j = 0; j < 128; j++)
 			buff[j] = '\0';

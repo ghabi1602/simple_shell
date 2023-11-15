@@ -11,7 +11,10 @@
 #include <sys/wait.h>
 #include <limits.h>
 #include <errno.h>
+/*global variables*/
+#define BUFSIZE 1024
 extern char **environ;
+
 /**
  * struct builtin - funtion pointer variables
  * @s: name of the func to point
@@ -65,13 +68,22 @@ void parse_func(const char *str, char **cmd_arr);
 char **rm_arg(char **arr);
 char *check_for_file(char **path_arr, char *exe_name);
 char **expansion(char **);
-int (*exec_blt(char **exp))(char **exp);
+int (*exec_blt(char **))(char **);
 int _env(char **);
 void free_mem(char *buf[]);
+int _setenv(char **exp);
+int _unsetenv(char **exp);
 
 /* list of cd functions */
-void _pwd();
-void cd_to(char *cmd_arr[]);
-int cd_prev();
-int (*select_cd(char **exp))();
+void _pwd(void);
+int cd_to(char *cmd_arr[]);
+int cd_prev(void);
+int select_cd(char **exp);
+int cd_back(void);
+int cd_home(void);
+char *rm_cwd(char *str);
+
+/*getline function declaration */
+void co_line(char **ptr, size_t *k, char *buf, size_t l);
+ssize_t _getline(char **ptr, size_t *k, FILE *strm);
 #endif /* SHELL_H */

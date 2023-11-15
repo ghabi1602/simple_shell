@@ -11,14 +11,14 @@ char *reader(void)
 	size_t count = 0;
 	ssize_t read;
 
-	read = getline(&buffer, &count, stdin);
+	read = _getline(&buffer, &count, stdin);
 	if (read == -1)
 	{
 		_print("coud not read line");
 		free(buffer);
 		exit(EXIT_FAILURE);
 	}
-	buffer[strcspn(buffer, "\n")] = '\0';
+	buffer[_strcspn(buffer, "\n")] = '\0';
 
 	return (buffer);
 }

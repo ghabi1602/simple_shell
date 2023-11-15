@@ -10,20 +10,17 @@ int (*exec_blt(char **exp))(char **exp)
 {
 	blt func_arr[] = {
 		{"env", _env},
-		{"cd", cd_prev},
-		/**
-		 *{"setenv", _setenv},
-		 *{"unsetenv", _unsetenv},
-		 *{"exit", _exit},
-		 */
+		{"cd", select_cd},
+		{"setenv", _setenv},
+		{"unsetenv", _unsetenv},
+		/*{"exit", exit},*/
 		{NULL, NULL}
 	};
 	int i;
-	int num = 3;
 
-	for (i = 0; i < num; i++)
+	for (i = 0; func_arr[i].s != NULL; i++)
 	{
-		if (func_arr[i].s == exp[0])
+		if (_strcmp(exp[0], func_arr[i].s) == 1)
 			return (func_arr[i].f);
 	}
 	return (NULL);
@@ -32,21 +29,39 @@ int (*exec_blt(char **exp))(char **exp)
 /**
  * select_cd - choose the cd option
  * @exp: array of string after cd
+ * Return: return 1 on success
  */
 
-int (*select_cd(char **exp))()
+int select_cd(char **exp)
 {
-	cd_st func_arr[] = {
-		{"..", cd_prev}
-	};
+	char *dir;
+	int home1, home2, home3;
 
-	int i, num = 1;
+	dir = exp[1];
 
-	for (i = 0; i < num; i++)
+	if (dir != NULL)
 	{
-		if (func_arr[i].s == exp[1])
-			return (func_arr[i].f);
+		home1 = _strcmp("$HOME", dir);
+		home2 = _strcmp("--", dir);
+		home3 = _strcmp("~", dir);
+	}
+	if (dir == NULL || !home1 || !home2 || !home3)
+	{
+		cd_home();
+		return (1);
+	}
+	if (_strcmp("-", dir) == 1)
+	{
+		cd_prev();
+		return (1);
+	}
+	if (_strcmp(".", dir) == 1 || _strcmp("..", dir) == 1)
+	{
+		cd_back();
+		return (1);
 	}
 
-	return (0);
+	cd_to(exp);
+
+	return (1);
 }

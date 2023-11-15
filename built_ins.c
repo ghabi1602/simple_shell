@@ -1,16 +1,6 @@
 #include "shell.h"
 
 /**
- * _env - prints environments
- * @exp: array of input strings
- * Return: integer
- */
-int _env(__attribute__((unused)) char **exp)
-{
-	_printenv();
-	return (1);
-}
-/**
  * _setenv - sets a new environment
  * @exp: array of input strings
  * Return: integer
@@ -18,7 +8,7 @@ int _env(__attribute__((unused)) char **exp)
 int _setenv(char **exp, char **cpenv)
 {
 	char *res, *tok;
-	int lenenv = 0, lenenv2 = 0, len = 0, i = 0;
+	int lenenv = 0, len = 0, i = 0;
 
 	while (exp[len] != NULL)
 		len++;
@@ -28,25 +18,25 @@ int _setenv(char **exp, char **cpenv)
 		return (-1); }
 	while (cpenv[lenenv] != NULL)
 		lenenv++;
-	res = _getenv(exp[1]);
+	res = _getenv(exp[1], cpenv);
 	if (!res)
 	{
 		cpenv = _realloc(cpenv, sizeof(char *) * (lenenv + 1), sizeof(char *)
 				* (lenenv + 2));
 		if (!cpenv)
 			return (-1);
-		cpenv[lenenv] = malloc(sizeof(char) * _strlen(exp[2]) + 1);
+		cpenv[lenenv + 1] = malloc(sizeof(char) * _strlen(exp[2]) + 1);
 		if (!cpenv[len])
 			return (-1);
-		cpenv[lenenv] = _strdup(exp[2]);
-		cpenv[lenenv + 1] = NULL;
+		cpenv[lenenv + 1] = _strdup(exp[2]);
+		cpenv[lenenv + 2] = NULL;
 		return (1); }
 	while (cpenv[i] != NULL)
 	{
 		tok = strtok(cpenv[i], "=");
 		if (_strcmp(tok, exp[1]) == 1)
 		{
-			cpenv[i] = _realloc(cpenv[i], sizeof(char) * _strlen(cpenv[i])
+			cpenv[i] = _realloc(cpenv[i], sizeof(char) * _strlen(cpenv[i]) + 1
 			, sizeof(char) * (_strlen(exp[1]) + _strlen(exp[2])) + 2);
 			if (!cpenv[i])
 				return (-1);
@@ -74,7 +64,7 @@ int _unsetenv(char **exp, char **cpenv)
 		perror("Failed: number of arguments");
 		return (-1);
 	}
-	p = _getenv(exp[1]);
+	p = _getenv(exp[1], cpenv);
 	if (!p)
 	{
 		perror("Failed: variable doesnt exist!");

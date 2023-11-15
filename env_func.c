@@ -5,7 +5,7 @@
  * Return: void
  */
 
-void _printenv(char **cpenv)
+int _env(__attribute__((unused)) char **exp, char **cpenv)
 {
 	int i;
 
@@ -14,6 +14,7 @@ void _printenv(char **cpenv)
 		_print(cpenv[i]);
 		_print("\n");
 	}
+	return (1);
 }
 
 /**
@@ -21,7 +22,7 @@ void _printenv(char **cpenv)
  * @env: the environment variable to search for
  * Return: pointer to the corresponding value string.
  */
-char *_getenv(const char *env)
+char *_getenv(const char *env, char **cpenv)
 {
 	char *str_env, *s;
 	int i, j, c, len, pos;
@@ -33,12 +34,7 @@ char *_getenv(const char *env)
 	while (cpenv[i] != NULL)
 	{
 		pos = _strcspn(cpenv[i], "=");
-		s = malloc(sizeof(char) * (pos + 1));
-		if (s == NULL)
-			return (NULL);
-
-		for (j = 0; j < pos; j++)
-			s[j] = cpenv[i][j];
+		s = strtok(cpenv[i], "=");
 		if (_strcmp(s, env) == 1)
 		{
 			len = _strlen(cpenv[i]) - pos;
@@ -67,7 +63,7 @@ char *_getenv(const char *env)
  * @cmd_arr: array of strings
  * Return: array of strings
  */
-char **expansion(char **cmd_arr)
+char **expansion(char **cmd_arr, char **cpenv)
 {
 	char **exp, *str, buff[30];
 	int len = 0, i, c, j;
@@ -90,7 +86,7 @@ char **expansion(char **cmd_arr)
 			for (j = 1; cmd_arr[i][j] != '\0'; j++, c++)
 				buff[c] = cmd_arr[i][j];
 			buff[c] = '\0';
-			str = _getenv(buff);
+			str = _getenv(buff, cpenv);
 			if (str)
 			{
 				exp[i] = _realloc(exp[i], sizeof(char) * _strlen(cmd_arr[i]) +
@@ -118,24 +114,27 @@ char **expansion(char **cmd_arr)
  * @cpenv: array of strings
  * Return: void
  */
-void copy_env(char **cpenv)
+char **copy_env()
 {
 	int len, i;
+	char **s;
 
 	len = 0;
 	while (environ[len] != NULL)
 		len++;
 
-	cpenv = malloc(sizeof(char *) * (len + 1));
-	if (!cpenv)
-		return;
+	s = malloc(sizeof(char *) * (len + 1));
+	if (!s)
+		return (NULL);
 
 	i = 0;
 	while (environ[i] != NULL)
 	{
-		cpenv[i] = malloc(sizeof(char) * _strlen(environ[i]) + 1);
-		if (!cpenv[i])
-			return;
-		cpenv[i] = _strdup(environ[i]);
+		s[i] = malloc(sizeof(char) * _strlen(environ[i]) + 1);
+		if (!s[i])
+			return (NULL);
+		s[i] = _strdup(environ[i]);
+		i++;
 	}
+	return (s);
 }

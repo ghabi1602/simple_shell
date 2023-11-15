@@ -16,7 +16,7 @@ int exec_cmd(char *cmd, int pid, char **cpenv)
 	int (*p_func)(char **, char **);
 
 	cmd_arr = parse_func(cmd);
-	exp = expansion(cmd_arr);
+	exp = expansion(cmd_arr, cpenv);
 	if (check_exit(exp) == 1)
 		__exit(exp[1], pid);
 	p_func = exec_blt(exp);

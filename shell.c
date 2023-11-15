@@ -8,10 +8,11 @@
 
 int main(void)
 {
-	char *buffer, **cpenv;
+	char **cpenv, *buffer;
 	int pid = getpid();
 
-	copy_env(cpenv);
+	cpenv = copy_env();
+
 	while (true)
 	{
 		disp_msg();

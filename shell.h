@@ -11,7 +11,7 @@
 #include <limits.h>
 #include <signal.h>
 
-/*unsigned int flag;*/
+unsigned int flag;
 /**
  * struct shell_data -  shell variables on start
  * @exp: tokenise command args

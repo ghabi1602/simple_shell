@@ -1,9 +1,10 @@
 #include "shell.h"
 
 /**
- * print_err - print err msg to stderr
- * @vars: pointer to shell_data
+ * print_err - print err msg to stderra
  * @msg: error msg
+ * @data: variable of type sh_data
+ * Return: void
  */
 void print_err(sh_data *data, char *msg)
 {
@@ -44,7 +45,7 @@ void _print_err(char *str)
 
 /**
  * _utoa - convert uint to str
- * @n: the number to be converted 
+ * @n: the number to be converted
  * Return: ptr to str
  */
 char *_utoa(unsigned int n)

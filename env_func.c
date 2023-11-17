@@ -2,7 +2,7 @@
 
 /**
  * env_cpy - copies the env in main
- * @env: environment 
+ * @env: environment
  *
  * Return: new env
  */
@@ -27,7 +27,7 @@ char **env_cpy(char **env)
 }
 
 /**
- * free_env - free  environment
+ * free_envr - free  environment
  * @env:  environment
  *
  * Return: void

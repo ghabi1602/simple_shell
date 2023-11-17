@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _realloc - imitates the realloc 
+ * _realloc - imitates the realloc
  * @ptr: ptr to old mem
  * @size: ptr to num of element in old arr
  * Return: pointer to new mem
